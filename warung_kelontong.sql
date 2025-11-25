@@ -1,0 +1,373 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Nov 25, 2025 at 06:33 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `warung_kelontong`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `barang`
+--
+
+CREATE TABLE `barang` (
+  `id` int(11) NOT NULL,
+  `nama_barang` varchar(255) NOT NULL,
+  `barcode` varchar(50) DEFAULT NULL,
+  `kategori` varchar(100) NOT NULL,
+  `harga_modal` decimal(10,2) NOT NULL,
+  `harga_jual` decimal(10,2) NOT NULL,
+  `stok` int(11) NOT NULL DEFAULT 0,
+  `status` enum('aktif','nonaktif') DEFAULT 'aktif',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `barang`
+--
+
+INSERT INTO `barang` (`id`, `nama_barang`, `barcode`, `kategori`, `harga_modal`, `harga_jual`, `stok`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Indomie Goreng', '8992753710635', 'Makanan', 2500.00, 3000.00, 99, 'aktif', '2025-11-13 10:42:39', '2025-11-15 03:43:46'),
+(2, 'Teh Botol Sosro', '8992957010011', 'Minuman', 4000.00, 5000.00, 50, 'aktif', '2025-11-13 10:42:39', '2025-11-13 10:42:39'),
+(3, 'Roti Tawar', '8997001500646', 'Makanan', 8000.00, 10000.00, 30, 'nonaktif', '2025-11-13 10:42:39', '2025-11-16 13:19:16'),
+(4, 'Susu UHT', '100', 'Minuman', 6000.00, 7500.00, 40, 'nonaktif', '2025-11-13 10:42:39', '2025-11-16 05:27:15'),
+(5, 'ROMA BISKUIT KELAPA', '8996001301142', 'Makanan', 8500.00, 9500.00, 7, 'aktif', '2025-11-13 10:42:39', '2025-11-16 13:07:38'),
+(6, 'Aqua 600ml', '8992987000200', 'Minuman', 2000.00, 3000.00, 79, 'nonaktif', '2025-11-13 10:42:39', '2025-11-14 14:20:49'),
+(7, 'Mie Sedap', '8992753710642', 'Makanan', 2500.00, 3000.00, 60, 'aktif', '2025-11-13 10:42:39', '2025-11-13 10:42:39'),
+(8, 'KOPI KAPAL API SACHET 6gr', '8991002105584', 'DAPUR', 900.00, 1000.00, 30, 'aktif', '2025-11-13 10:42:39', '2025-11-16 13:22:22'),
+(9, 'Pocari Sweat', '8998989300261', 'Minuman', 16000.00, 19000.00, 8, 'aktif', '2025-11-13 10:42:39', '2025-11-13 10:42:39'),
+(10, 'TIPEX JOYKO KERTAS 12m', '8993988055174', 'ATK', 6000.00, 7000.00, 2, 'aktif', '2025-11-14 09:49:17', '2025-11-16 13:17:52'),
+(11, 'STAPLES KENKO', '8998838350010', 'ATK', 11000.00, 13000.00, 2, 'aktif', '2025-11-14 09:52:40', '2025-11-16 13:16:50'),
+(12, 'LAMPU HANNOCHS SUPRA 6W CDL', '6945082417831', 'KELISTRIKAN', 12354.00, 15000.00, 4, 'aktif', '2025-11-14 15:09:42', '2025-11-15 03:41:33'),
+(13, 'LAMPU HANNOCHS SUPRA 12W CDL', '6945082417848', 'KELISTRIKAN', 17377.00, 20000.00, 4, 'aktif', '2025-11-14 15:12:24', '2025-11-15 03:35:55'),
+(14, 'LAMPU HANNOCHS SUPRA 18W CDL', '6945082417855', 'KELISTRIKAN', 22832.00, 25000.00, 4, 'aktif', '2025-11-14 15:13:29', '2025-11-15 03:41:26'),
+(15, 'LAMPU VISERO GENIX 10W CDL', NULL, 'KELISTRIKAN', 7023.00, 10000.00, 4, 'aktif', '2025-11-14 15:16:16', '2025-11-15 03:41:42'),
+(16, 'LAMPU VISERO GENIX 15W CDL', NULL, 'KELISTRIKAN', 9216.00, 13000.00, 4, 'aktif', '2025-11-15 01:46:24', '2025-11-15 03:41:50'),
+(17, 'LAMPU VISERO GENIX 5W CDL', NULL, 'KELISTRIKAN', 4983.00, 7000.00, 4, 'aktif', '2025-11-15 01:48:39', '2025-11-15 03:42:04'),
+(18, 'LAMPU VISERO VINTAGE 18W CDL', NULL, 'KELISTRIKAN', 10500.00, 15000.00, 4, 'aktif', '2025-11-15 01:52:07', '2025-11-15 03:42:24'),
+(19, 'LAMPU VISERO VINTAGE 15W CDL', NULL, 'KELISTRIKAN', 8900.00, 13000.00, 4, 'aktif', '2025-11-15 01:53:17', '2025-11-15 03:42:18'),
+(20, 'LAMPU VISERO VINTAGE 12W CDL', NULL, 'KELISTRIKAN', 7250.00, 11000.00, 4, 'aktif', '2025-11-15 01:56:04', '2025-11-15 03:42:11'),
+(21, 'LAMPU VISERO VINTAGE 9W CDL', NULL, 'KELISTRIKAN', 6650.00, 9000.00, 4, 'aktif', '2025-11-15 01:57:31', '2025-11-15 03:42:54'),
+(22, 'LAMPU VISERO VINTAGE 7W CDL', NULL, 'KELISTRIKAN', 5500.00, 8000.00, 3, 'aktif', '2025-11-15 01:58:39', '2025-11-15 03:42:47'),
+(23, 'LAMPU VISERO VINTAGE 21W CDL', NULL, 'KELISTRIKAN', 14300.00, 18000.00, 4, 'aktif', '2025-11-15 02:00:27', '2025-11-15 03:42:33'),
+(24, 'LAMPU VISERO VINTAGE 5W CDL', NULL, 'KELISTRIKAN', 4600.00, 7000.00, 4, 'aktif', '2025-11-15 02:02:15', '2025-11-15 03:42:42'),
+(25, 'SAKLAR OB DOUBLE ORENCHI', NULL, 'KELISTRIKAN', 7427.00, 9500.00, 1, 'aktif', '2025-11-15 03:15:24', '2025-11-15 03:43:11'),
+(26, 'SAKLAR OB SINGLE/ENGKEL ORENCHI', NULL, 'KELISTRIKAN', 5616.00, 8000.00, 2, 'aktif', '2025-11-15 03:17:32', '2025-11-15 03:43:24'),
+(27, 'SAKLAR OB SINGLE/ENGKEL DUTRON', NULL, 'KELISTRIKAN', 4900.00, 7000.00, 2, 'aktif', '2025-11-15 03:20:06', '2025-11-15 03:43:17'),
+(28, 'SAKLAR OB DOUBLE DUTRON', NULL, 'KELISTRIKAN', 6200.00, 8500.00, 2, 'aktif', '2025-11-15 03:21:23', '2025-11-15 03:43:04'),
+(29, 'STOP KONTAK OB SINGLE/ENGKEL ORENCHI', NULL, 'KELISTRIKAN', 7220.00, 9500.00, 2, 'aktif', '2025-11-15 03:26:22', '2025-11-15 03:41:09'),
+(30, 'STOP KONTAK OB SINGLE/ENGKEL DUTRON', NULL, 'KELISTRIKAN', 6150.00, 8000.00, 2, 'aktif', '2025-11-15 03:40:33', '2025-11-15 03:40:33'),
+(31, 'Fitting Gantung VISERO', NULL, 'KELISTRIKAN', 2086.00, 3500.00, 4, 'aktif', '2025-11-15 03:44:32', '2025-11-15 04:01:41'),
+(32, 'Klem Kabel 6mm DEXICON', NULL, 'KELISTRIKAN', 3545.00, 4500.00, 3, 'aktif', '2025-11-15 03:48:18', '2025-11-15 03:48:18'),
+(33, 'Klem Kabel 7mm DEXICON', NULL, 'KELISTRIKAN', 3855.00, 5000.00, 3, 'aktif', '2025-11-15 03:50:24', '2025-11-15 03:50:24'),
+(34, 'Klem Kabel 8mm DEXICON', NULL, 'KELISTRIKAN', 4062.00, 5500.00, 1, 'aktif', '2025-11-15 04:03:10', '2025-11-15 04:03:37'),
+(35, 'Fitting TEMPEL/Plafon VISERO VPG-104 OVAL', NULL, 'KELISTRIKAN', 3648.00, 5000.00, 4, 'aktif', '2025-11-15 04:07:26', '2025-11-15 04:07:26'),
+(36, 'Fitting TEMPEL/Plafon VISERO VPG-105 HTM BULAT', NULL, 'KELISTRIKAN', 3390.00, 4500.00, 4, 'aktif', '2025-11-15 04:10:12', '2025-11-15 04:10:12'),
+(37, 'FITTING GANTUNG KARET SUNFREE FB414 Black', NULL, 'KELISTRIKAN', 7584.00, 9000.00, 4, 'aktif', '2025-11-15 06:43:21', '2025-11-15 06:43:21'),
+(38, 'Fitting Colok DUTRON DV-FCS-01 + SWITCH', NULL, 'KELISTRIKAN', 3600.00, 5000.00, 2, 'aktif', '2025-11-15 06:48:08', '2025-11-15 06:48:08'),
+(39, 'Fitting Colok VISERO VPG-106', NULL, 'KELISTRIKAN', 2769.00, 4000.00, 4, 'aktif', '2025-11-15 06:51:34', '2025-11-15 06:51:34'),
+(40, 'Steker GEPENG ORENCHI PUTIH', NULL, 'KELISTRIKAN', 1974.00, 3000.00, 4, 'aktif', '2025-11-15 06:56:02', '2025-11-16 13:18:58'),
+(41, 'Steker T MYVO MTM-01', NULL, 'KELISTRIKAN', 4269.00, 5500.00, 2, 'aktif', '2025-11-15 06:59:56', '2025-11-15 06:59:56'),
+(42, 'Steker L VISERO VS-104L HITAM', NULL, 'KELISTRIKAN', 2527.00, 4000.00, 2, 'aktif', '2025-11-15 07:02:18', '2025-11-15 07:02:18'),
+(43, 'Steker L VISERO VS-104L PUTIH', NULL, 'KELISTRIKAN', 2527.00, 4000.00, 2, 'aktif', '2025-11-15 07:03:04', '2025-11-15 07:03:04'),
+(44, 'Steker BULAT DEXICON HITAM', NULL, 'KELISTRIKAN', 2892.00, 5000.00, 2, 'aktif', '2025-11-15 07:06:38', '2025-11-15 07:06:38'),
+(45, 'Steker BULAT ORENCHI PUTIH', NULL, 'KELISTRIKAN', 3600.00, 5000.00, 2, 'aktif', '2025-11-15 07:07:21', '2025-11-15 07:07:21'),
+(46, 'JARUM 76 MANGGA', '8991906101811', 'ROKOK', 14600.00, 16000.00, 4, 'aktif', '2025-11-15 08:50:10', '2025-11-15 08:50:10'),
+(47, 'JARUM 76 APEL', '8991906106250', 'ROKOK', 13750.00, 15000.00, 4, 'aktif', '2025-11-15 08:51:34', '2025-11-15 08:51:34'),
+(48, 'JARUM 76 KRETEK 12', '8991906101668', 'ROKOK', 15500.00, 16500.00, 4, 'aktif', '2025-11-15 08:54:28', '2025-11-15 08:54:28'),
+(49, 'JARUM SUPER 12', '8991906101019', 'ROKOK', 23000.00, 24000.00, 3, 'aktif', '2025-11-15 08:55:56', '2025-11-17 00:30:54'),
+(50, 'JARUM SUPER 16', '8991906101026', 'ROKOK', 30800.00, 33000.00, 2, 'aktif', '2025-11-15 08:58:41', '2025-11-15 08:58:41'),
+(51, 'GUDANG GARAM FILTER', '8998989100120', 'ROKOK', 25500.00, 26500.00, 5, 'aktif', '2025-11-15 09:00:35', '2025-11-15 09:00:35'),
+(52, 'GUDANG GARAM SURYA 16', '8998989110167', 'ROKOK', 34000.00, 35000.00, 7, 'aktif', '2025-11-15 09:01:33', '2025-11-16 05:17:37'),
+(53, 'TENOR KRETEK HIJAU', '8991914101520', 'ROKOK', 9200.00, 10000.00, 5, 'aktif', '2025-11-15 09:03:56', '2025-11-15 09:03:56'),
+(54, 'DUNHILL HITAM', '8998127912363', 'ROKOK', 29500.00, 30500.00, 2, 'aktif', '2025-11-15 09:05:53', '2025-11-15 09:05:53'),
+(55, 'MAGNUM FILTER', '8999909001909', 'ROKOK', 25500.00, 26500.00, 2, 'aktif', '2025-11-15 09:06:56', '2025-11-15 09:06:56'),
+(56, 'DJI SAM SOE KUNING', '8999909028234', 'ROKOK', 19300.00, 20500.00, 3, 'aktif', '2025-11-15 09:10:21', '2025-11-15 09:10:21'),
+(57, 'DJI SAM SOE REFILL / HITAM', '8999909028999', 'ROKOK', 21500.00, 22500.00, 5, 'aktif', '2025-11-15 09:12:14', '2025-11-15 09:12:14'),
+(58, 'VIPER', '8991914101049', 'ROKOK', 20500.00, 21500.00, 4, 'aktif', '2025-11-15 09:13:58', '2025-11-22 04:47:01'),
+(59, 'GUDANG GARAM MERAH / KRETEK', '8998989500128', 'ROKOK', 15500.00, 16500.00, 4, 'aktif', '2025-11-15 09:16:30', '2025-11-15 09:16:30'),
+(60, 'SAMPOERNA HIJAU / KRETEK', '8999909000988', 'ROKOK', 15500.00, 16500.00, 5, 'aktif', '2025-11-15 09:18:18', '2025-11-22 04:54:19'),
+(61, 'SAMPOERNA MILD HIJAU', '8999909000650', 'ROKOK', 34200.00, 35500.00, 2, 'aktif', '2025-11-15 09:20:34', '2025-11-15 09:20:34'),
+(62, 'SAMPOERNA AVOLUTION', '8999909000377', 'ROKOK', 41800.00, 43000.00, 2, 'aktif', '2025-11-15 09:21:37', '2025-11-15 09:21:37'),
+(63, 'CAMEL UNGU', '8997217370311', 'ROKOK', 18700.00, 20000.00, 2, 'aktif', '2025-11-15 09:23:07', '2025-11-15 09:23:07'),
+(64, 'SERGIO', '8991911101042', 'ROKOK', 27000.00, 28000.00, 2, 'aktif', '2025-11-15 09:24:24', '2025-11-15 09:24:24'),
+(65, 'CLIMAX APPLE', '8993883751331', 'ROKOK', 27700.00, 29000.00, 2, 'aktif', '2025-11-15 09:26:15', '2025-11-15 09:26:15'),
+(66, 'NMOS BOLD', NULL, 'ROKOK', 23000.00, 24000.00, 1, 'aktif', '2025-11-15 09:30:18', '2025-11-15 09:30:18'),
+(67, 'DIPLOMAT HITAM', '8994214110124', 'ROKOK', 25000.00, 26000.00, 2, 'aktif', '2025-11-15 09:33:21', '2025-11-15 09:33:21'),
+(68, 'DIPLOMAT MILD BERRY', '8994214995868', 'ROKOK', 25000.00, 26000.00, 3, 'aktif', '2025-11-15 09:34:12', '2025-11-15 09:34:12'),
+(69, 'DIPLOMAT MILD PUTIH', '8994214984947', 'ROKOK', 25000.00, 26000.00, 3, 'aktif', '2025-11-15 09:34:45', '2025-11-15 09:34:45'),
+(70, 'SAMPOERNA MILD 16', '8999909013278', 'ROKOK', 33000.00, 34000.00, 4, 'aktif', '2025-11-15 09:37:19', '2025-11-15 09:37:19'),
+(71, 'SAMPOERNA MILD 12', '8999909982000', 'ROKOK', 24500.00, 26000.00, 2, 'aktif', '2025-11-15 09:37:57', '2025-11-22 04:48:54'),
+(72, 'LUCKY STRIKE', '89981108', 'ROKOK', 28500.00, 29500.00, 2, 'aktif', '2025-11-15 09:39:00', '2025-11-15 09:39:00'),
+(73, 'MARLBORO MERAH', '8997018460280', 'ROKOK', 41000.00, 42000.00, 2, 'aktif', '2025-11-15 09:39:46', '2025-11-15 09:39:46'),
+(74, 'MARLBORO HITAM 20', '8999909000544', 'ROKOK', 38000.00, 39000.00, 2, 'aktif', '2025-11-15 09:40:28', '2025-11-15 09:40:28'),
+(75, 'MARLBORO HITAM 12', '8999909000773', 'ROKOK', 23000.00, 24000.00, 1, 'aktif', '2025-11-15 09:42:06', '2025-11-15 09:42:06'),
+(76, 'SAMPOERNA PRIMA', '8999909012547', 'ROKOK', 14800.00, 16000.00, 12, 'aktif', '2025-11-15 09:43:29', '2025-11-22 04:57:08'),
+(77, 'COUNTRY', '8997207198871', 'ROKOK', 26500.00, 28000.00, 2, 'aktif', '2025-11-15 09:53:36', '2025-11-17 00:30:10'),
+(78, 'WIN BOLD', '8997017791262', 'ROKOK', 27800.00, 29000.00, 3, 'aktif', '2025-11-15 09:54:47', '2025-11-15 09:54:47'),
+(79, 'LA LIGHT', '8991906101057', 'ROKOK', 33000.00, 34000.00, 3, 'aktif', '2025-11-15 09:56:58', '2025-11-15 09:56:58'),
+(80, 'LA BOLD', '8991906105758', 'ROKOK', 37000.00, 38000.00, 2, 'aktif', '2025-11-15 09:57:41', '2025-11-15 09:57:41'),
+(81, 'LA ICE PUTIH', '8991906101101', 'ROKOK', 33000.00, 34000.00, 2, 'aktif', '2025-11-15 09:58:41', '2025-11-15 09:58:41'),
+(82, 'LA ICE BIRU', '8991906102009', 'ROKOK', 33000.00, 34000.00, 2, 'aktif', '2025-11-15 09:59:07', '2025-11-15 09:59:07'),
+(83, 'LA ICE MANGO', '8991906102085', 'ROKOK', 33000.00, 34000.00, 1, 'aktif', '2025-11-15 10:00:26', '2025-11-15 10:00:26'),
+(84, 'CLASS MILD', '8993989311699', 'ROKOK', 28500.00, 29500.00, 3, 'aktif', '2025-11-15 10:01:55', '2025-11-15 10:01:55'),
+(85, 'ESSE CHANGE DOUBLE', '8999168211248', 'ROKOK', 41500.00, 42500.00, 2, 'aktif', '2025-11-15 10:03:26', '2025-11-15 10:03:26'),
+(86, 'ESSE CHANGE', '8997032821272', 'ROKOK', 40500.00, 41500.00, 2, 'aktif', '2025-11-15 10:04:03', '2025-11-15 10:04:03'),
+(87, 'MARLBORO KRETEK BIRU', '8999909009950', 'ROKOK', 10500.00, 12000.00, 3, 'aktif', '2025-11-15 10:05:16', '2025-11-15 10:05:16'),
+(88, 'MENARA INTERNATIONAL', '8997012910767', 'ROKOK', 16000.00, 17000.00, 5, 'aktif', '2025-11-15 10:06:10', '2025-11-15 10:06:10'),
+(89, 'AZIMO', '8990017101529', 'ROKOK', 8000.00, 9000.00, 26, 'aktif', '2025-11-15 10:06:52', '2025-11-15 10:06:52'),
+(90, 'SENIOR', '8991904101103', 'ROKOK', 15500.00, 16500.00, 1, 'aktif', '2025-11-15 10:09:28', '2025-11-15 10:09:28'),
+(91, 'SUKUN PUTIH 12', '8999090501035', 'ROKOK', 18300.00, 19500.00, 1, 'aktif', '2025-11-15 10:10:36', '2025-11-16 05:26:57'),
+(92, 'SUKUN KRETEK 12', '8999090522757', 'ROKOK', 11250.00, 12500.00, 2, 'aktif', '2025-11-15 10:11:34', '2025-11-15 10:11:34'),
+(93, 'TENOR MERAH', '8991914101544', 'ROKOK', 9000.00, 10000.00, 1, 'aktif', '2025-11-15 10:12:43', '2025-11-15 10:12:43'),
+(94, 'JARUM COKLAT EXTRA 12', '8991906101712', 'ROKOK', 15500.00, 17000.00, 2, 'aktif', '2025-11-15 10:13:31', '2025-11-15 10:13:31'),
+(95, 'KERBAU KRETEK LONG SIZE', '8998711110991', 'ROKOK', 7500.00, 8500.00, 2, 'aktif', '2025-11-15 10:14:35', '2025-11-15 10:14:35'),
+(96, 'GAJAH BARU', '8997018320829', 'ROKOK', 16500.00, 17500.00, 1, 'aktif', '2025-11-15 10:15:09', '2025-11-15 10:15:09'),
+(97, 'MENARA MERAH KHATULISTIWA', '8997012910675', 'ROKOK', 16000.00, 17000.00, 1, 'aktif', '2025-11-15 10:16:51', '2025-11-15 10:16:51'),
+(98, 'JARUM 76 KRETEK 16', '8991906101729', 'ROKOK', 21000.00, 22000.00, 2, 'aktif', '2025-11-15 10:44:29', '2025-11-15 10:44:29'),
+(99, 'JARUM 76 ROYAL', '8991906106182', 'ROKOK', 15500.00, 16500.00, 2, 'aktif', '2025-11-15 10:45:42', '2025-11-15 10:45:42'),
+(100, 'WIN CLICK BERRY', '8997017791699', 'ROKOK', 28900.00, 30000.00, 3, 'aktif', '2025-11-16 05:17:14', '2025-11-16 05:17:14'),
+(101, 'SUKUN PUTIH 16', '8999090501042', 'ROKOK', 23600.00, 25000.00, 5, 'aktif', '2025-11-16 05:18:29', '2025-11-16 05:18:29'),
+(102, 'GUDANG GARAM SURYA 12', '8998989110129', 'ROKOK', 25200.00, 26500.00, 5, 'aktif', '2025-11-16 05:19:22', '2025-11-16 05:19:22'),
+(103, 'BALSEM OTOT GELIGA', '8993176812022', 'OBAT', 9000.00, 10000.00, 2, 'aktif', '2025-11-16 05:21:02', '2025-11-16 05:21:37'),
+(104, 'SALONPAS', '8992870410206', 'OBAT', 750.00, 1000.00, 12, 'aktif', '2025-11-16 05:23:07', '2025-11-16 05:23:07'),
+(105, 'MINYAK KAYU PUTIH KECIL 15ML', '8993176110098', 'OBAT', 6500.00, 7000.00, 2, 'aktif', '2025-11-16 05:24:52', '2025-11-16 05:24:52'),
+(106, 'TEH DANDANG SACHET', '8994286149107', 'RUMAH TANGGA', 1800.00, 2000.00, 20, 'aktif', '2025-11-16 13:09:07', '2025-11-16 13:09:07'),
+(107, 'KETUMBAR BUBUK DAPURKITA', '8997210720038', 'DAPUR', 400.00, 500.00, 6, 'aktif', '2025-11-16 13:10:53', '2025-11-16 13:15:32'),
+(108, 'KAYU MANIS BUBUK DAPURKITA', '8997210721080', 'DAPUR', 400.00, 500.00, 6, 'aktif', '2025-11-16 13:12:34', '2025-11-16 13:15:18'),
+(109, 'KOPI KAPAL API 60gr', '8991002105430', 'DAPUR', 9000.00, 9500.00, 10, 'aktif', '2025-11-16 13:23:51', '2025-11-16 13:23:51'),
+(110, 'SENIOR KRETEK MERAH 16', '8991904102520', 'ROKOK', 14500.00, 16000.00, 2, 'aktif', '2025-11-17 00:29:13', '2025-11-17 00:34:35'),
+(111, 'BATTERY ALKALINE A3 DYNAMAX', '6930971484162', 'KELISTRIKAN', 6550.00, 10000.00, 10, 'aktif', '2025-11-18 12:51:06', '2025-11-18 12:51:06'),
+(112, 'BATTERY ALKALINE A2 DYNAMAX', '6930971484148', 'KELISTRIKAN', 6950.00, 10000.00, 10, 'aktif', '2025-11-18 12:52:59', '2025-11-18 12:52:59'),
+(113, 'BATTERY EVEREADY A3', '8999002671726', 'KELISTRIKAN', 2195.00, 2500.00, 20, 'aktif', '2025-11-18 12:56:43', '2025-11-18 12:56:43'),
+(114, 'BATTERY A2 EVEREADY', '8999002671573', 'KELISTRIKAN', 2195.00, 2500.00, 20, 'aktif', '2025-11-18 15:18:33', '2025-11-18 15:18:33'),
+(115, 'BATTERY KANCING CR2032 MAXELL', '4902580131258', 'KELISTRIKAN', 4000.00, 8000.00, 10, 'aktif', '2025-11-18 15:20:57', '2025-11-18 15:20:57'),
+(116, 'BATTERY A2 DYNAMAXX HIJAU', NULL, 'KELISTRIKAN', 810.00, 2000.00, 58, 'aktif', '2025-11-18 15:23:43', '2025-11-18 15:23:43'),
+(117, 'BATTERY A3 DYNAMAXX HIJAU', NULL, 'KELISTRIKAN', 735.00, 2000.00, 60, 'aktif', '2025-11-18 15:24:24', '2025-11-18 15:24:24'),
+(118, 'WIN KRETEK BERRY', '8997017792276', 'ROKOK', 10500.00, 11500.00, 2, 'aktif', '2025-11-22 04:42:25', '2025-11-22 04:42:25'),
+(119, 'WIN FILTER', '8997017791521', 'ROKOK', 27800.00, 29000.00, 5, 'aktif', '2025-11-22 04:44:02', '2025-11-22 04:44:02'),
+(120, 'SAMPOERNA  MILD 16', '8999909096004', 'ROKOK', 34000.00, 35000.00, 2, 'aktif', '2025-11-22 04:52:59', '2025-11-22 04:52:59');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kategori`
+--
+
+CREATE TABLE `kategori` (
+  `id` int(11) NOT NULL,
+  `nama_kategori` varchar(100) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `kategori`
+--
+
+INSERT INTO `kategori` (`id`, `nama_kategori`, `created_at`, `updated_at`) VALUES
+(1, 'Makanan', '2025-11-15 03:25:09', '2025-11-15 03:25:09'),
+(2, 'Minuman', '2025-11-15 03:25:09', '2025-11-15 03:25:09'),
+(3, 'Lainnya', '2025-11-15 03:25:09', '2025-11-15 03:25:09'),
+(28, 'KELISTRIKAN', '2025-11-15 03:35:44', '2025-11-15 03:35:44'),
+(56, 'ROKOK', '2025-11-15 08:44:17', '2025-11-15 08:44:17'),
+(69, 'OBAT', '2025-11-16 05:21:11', '2025-11-16 05:21:11'),
+(73, 'ATK', '2025-11-16 05:25:59', '2025-11-16 05:25:59'),
+(80, 'RUMAH TANGGA', '2025-11-16 13:04:48', '2025-11-16 13:04:48'),
+(84, 'DAPUR', '2025-11-16 13:13:42', '2025-11-16 13:13:42');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `transaksi`
+--
+
+CREATE TABLE `transaksi` (
+  `id` int(11) NOT NULL,
+  `tanggal` timestamp NOT NULL DEFAULT current_timestamp(),
+  `total_harga` decimal(10,2) NOT NULL,
+  `total_modal` decimal(15,2) DEFAULT 0.00,
+  `total_laba` decimal(15,2) DEFAULT 0.00,
+  `uang_diterima` decimal(10,2) DEFAULT 0.00,
+  `kembalian` decimal(10,2) DEFAULT 0.00,
+  `user_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `transaksi`
+--
+
+INSERT INTO `transaksi` (`id`, `tanggal`, `total_harga`, `total_modal`, `total_laba`, `uang_diterima`, `kembalian`, `user_id`, `created_at`) VALUES
+(1, '2025-11-13 10:44:54', 31500.00, 25000.00, 6500.00, 32000.00, 500.00, 1, '2025-11-13 10:44:54'),
+(2, '2025-11-14 08:49:32', 3000.00, 2000.00, 1000.00, 20000.00, 17000.00, 1, '2025-11-14 08:49:32'),
+(3, '2025-11-14 09:50:13', 7000.00, 6000.00, 1000.00, 20000.00, 13000.00, 1, '2025-11-14 09:50:13'),
+(4, '2025-11-15 03:43:46', 3000.00, 2500.00, 500.00, 20000.00, 17000.00, 1, '2025-11-15 03:43:46'),
+(5, '2025-11-15 03:55:46', 3500.00, 2086.00, 1414.00, 100000.00, 96500.00, 1, '2025-11-15 03:55:46'),
+(6, '2025-11-15 03:59:56', 15000.00, 12000.00, 3000.00, 20000.00, 5000.00, 1, '2025-11-15 03:59:56');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `transaksi_detail`
+--
+
+CREATE TABLE `transaksi_detail` (
+  `id` int(11) NOT NULL,
+  `transaksi_id` int(11) NOT NULL,
+  `barang_id` int(11) NOT NULL,
+  `jumlah` int(11) NOT NULL,
+  `harga_satuan` decimal(10,2) NOT NULL,
+  `subtotal` decimal(10,2) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `transaksi_detail`
+--
+
+INSERT INTO `transaksi_detail` (`id`, `transaksi_id`, `barang_id`, `jumlah`, `harga_satuan`, `subtotal`, `created_at`) VALUES
+(1, 1, 8, 1, 1500.00, 1500.00, '2025-11-13 10:44:54'),
+(2, 1, 5, 2, 15000.00, 30000.00, '2025-11-13 10:44:54'),
+(3, 2, 6, 1, 3000.00, 3000.00, '2025-11-14 08:49:32'),
+(4, 3, 10, 1, 7000.00, 7000.00, '2025-11-14 09:50:13'),
+(5, 4, 1, 1, 3000.00, 3000.00, '2025-11-15 03:43:46'),
+(6, 5, 31, 1, 3500.00, 3500.00, '2025-11-15 03:55:46'),
+(7, 6, 5, 1, 15000.00, 15000.00, '2025-11-15 03:59:56');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `nama` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `email`, `password`, `nama`, `created_at`, `updated_at`) VALUES
+(1, 'admin@test.com', '$2b$10$l2OsHI.7mhgLZxlmjVkXFuPq8JnDW.YGGlg0oHgSEUy6HFc1vBYTO', 'Admin Warung', '2025-11-13 10:42:39', '2025-11-13 11:13:36');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `barang`
+--
+ALTER TABLE `barang`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `barcode` (`barcode`),
+  ADD KEY `idx_barcode` (`barcode`);
+
+--
+-- Indexes for table `kategori`
+--
+ALTER TABLE `kategori`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `nama_kategori` (`nama_kategori`);
+
+--
+-- Indexes for table `transaksi`
+--
+ALTER TABLE `transaksi`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `transaksi_detail`
+--
+ALTER TABLE `transaksi_detail`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `transaksi_id` (`transaksi_id`),
+  ADD KEY `barang_id` (`barang_id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `barang`
+--
+ALTER TABLE `barang`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
+
+--
+-- AUTO_INCREMENT for table `kategori`
+--
+ALTER TABLE `kategori`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=142;
+
+--
+-- AUTO_INCREMENT for table `transaksi`
+--
+ALTER TABLE `transaksi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `transaksi_detail`
+--
+ALTER TABLE `transaksi_detail`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `transaksi`
+--
+ALTER TABLE `transaksi`
+  ADD CONSTRAINT `transaksi_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL;
+
+--
+-- Constraints for table `transaksi_detail`
+--
+ALTER TABLE `transaksi_detail`
+  ADD CONSTRAINT `transaksi_detail_ibfk_1` FOREIGN KEY (`transaksi_id`) REFERENCES `transaksi` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `transaksi_detail_ibfk_2` FOREIGN KEY (`barang_id`) REFERENCES `barang` (`id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
